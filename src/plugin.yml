@@ -1,0 +1,7 @@
+name: Economy
+main: io.neutrino.economy.Economy
+version: 1.0
+api-version: 1.16
+description: Economy addon for Neutrino.
+depend: [Neutrino]
+author: wolfrevOkcatS

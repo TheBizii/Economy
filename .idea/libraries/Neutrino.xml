@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Neutrino">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Byepixel server/plugins/Neutrino.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
