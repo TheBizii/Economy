@@ -1,9 +1,7 @@
-package models;
+package io.neutrino.economy.models;
 
 import io.neutrino.Neutrino;
 import io.neutrino.api.database.DatabaseModel;
-
-import java.sql.PreparedStatement;
 
 public class Transaction extends DatabaseModel {
     private Integer receiverWalletId;
@@ -57,6 +55,11 @@ public class Transaction extends DatabaseModel {
 
     @Override
     public void insert() {
+        Neutrino.getInstance().getQueryBuilder()
+                .insertInto(getTableName())
+                .columns("receiver_wallet_id", "sender_wallet_id", "amount", "created", "updated", "active")
+                .values(receiverWalletId, senderWalletId, amount, created, updated, active)
+                .execute();
     }
 
     @Override
@@ -66,10 +69,5 @@ public class Transaction extends DatabaseModel {
     @Override
     public boolean exists() {
         return false;
-    }
-
-    @Override
-    public void load() {
-
     }
 }

@@ -1,9 +1,7 @@
-package models;
+package io.neutrino.economy.models;
 
 import io.neutrino.Neutrino;
 import io.neutrino.api.database.DatabaseModel;
-
-import java.sql.PreparedStatement;
 
 public class Currency extends DatabaseModel {
 
@@ -48,6 +46,11 @@ public class Currency extends DatabaseModel {
 
     @Override
     public void insert() {
+        Neutrino.getInstance().getQueryBuilder()
+                .insertInto(getTableName())
+                .columns("name", "abbreviation", "created", "updated", "active")
+                .values(name, abbreviation, created, updated, active)
+                .execute();
     }
 
     @Override
@@ -57,10 +60,5 @@ public class Currency extends DatabaseModel {
     @Override
     public boolean exists() {
         return false;
-    }
-
-    @Override
-    public void load() {
-
     }
 }

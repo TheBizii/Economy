@@ -1,10 +1,11 @@
 package io.neutrino.economy;
 
 import io.neutrino.Neutrino;
-import io.neutrino.model.NeutrinoProfile;
-import models.Currency;
-import models.Transaction;
-import models.Wallet;
+import io.neutrino.economy.commands.BalanceCommand;
+import io.neutrino.economy.commands.CurrencyCommand;
+import io.neutrino.economy.models.Currency;
+import io.neutrino.economy.models.Transaction;
+import io.neutrino.economy.models.Wallet;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Economy extends JavaPlugin {
@@ -14,9 +15,9 @@ public class Economy extends JavaPlugin {
     @Override
     public void onEnable() {
         setInstance(this);
+        registerCommands();
         setupDatabase();
         Neutrino.getInstance().logSuccess("Economy plugin enabled");
-        getNeutrino().log(getNeutrino().getDatabase().isConnected() + "");
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Economy extends JavaPlugin {
         Economy.instance = instance;
     }
 
-    private Neutrino getNeutrino() {
+    public Neutrino getNeutrino() {
         return Neutrino.getInstance();
     }
 
@@ -42,5 +43,10 @@ public class Economy extends JavaPlugin {
         getNeutrino().getDatabase().registerModel(new Currency());
         getNeutrino().getDatabase().registerModel(new Wallet());
         getNeutrino().getDatabase().registerModel(new Transaction());
+    }
+
+    private void registerCommands() {
+        getCommand("balance").setExecutor(new BalanceCommand());
+        getCommand("currency").setExecutor(new CurrencyCommand());
     }
 }

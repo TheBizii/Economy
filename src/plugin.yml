@@ -5,3 +5,11 @@ api-version: 1.16
 description: Economy addon for Neutrino.
 depend: [Neutrino]
 author: wolfrevOkcatS
+commands:
+  balance:
+    description: Returns a balance of any player across all wallets.
+    aliases: [bal, money]
+    usage: "Usage: /balance [player_name]"
+  currency:
+    description: A command used for managing supported currencies.
+    usage: "Usage: /currency [add | deactivate | modify | list]"
